@@ -17,11 +17,27 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('created', models.DateTimeField(auto_now_add=True)),
-                ('name', models.CharField(max_length=100)),
+                ('roomName', models.CharField(max_length=100)),
                 ('owner', models.ForeignKey(related_name='rooms', to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'ordering': ('created',),
             },
+        ),
+        migrations.CreateModel(
+            name='Sensor',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('created', models.DateTimeField(auto_now_add=True)),
+                ('sensorName', models.CharField(max_length=100)),
+                ('room', models.ForeignKey(related_name='sensors', to='freedom.Room')),
+            ],
+            options={
+                'ordering': ('created',),
+            },
+        ),
+        migrations.AlterUniqueTogether(
+            name='sensor',
+            unique_together=set([('sensorName', 'room')]),
         ),
     ]
