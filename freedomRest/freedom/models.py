@@ -7,10 +7,10 @@ class Room(models.Model):
 	la url tiene que ser /room/id/sensor/id
 	"""
 	"tiene que tener ID PrimaryKey "
-	owner = models.ForeignKey('auth.User', related_name='rooms')
+	#owner = models.ForeignKey('auth.User', related_name='rooms')
 	created = models.DateTimeField(auto_now_add=True)
 	roomName = models.CharField(max_length=100, blank=False)
-	"sensors = models.ForeignKey('freedom.Sensor', related_name='rooms', null='True')"
+	sensors = models.ForeignKey('freedom.Sensor', related_name='rooms', null='True')
 	"tiene que tener sensores"
 
 	def save(self, *args, **kwargs):
@@ -31,7 +31,7 @@ class Sensor(models.Model):
 	la url tiene que ser /room/id/sensor/id
 	"""
 	"tiene que tener ID PrimaryKey "
-	room = models.ForeignKey(Room, related_name='sensors')
+	room = models.ForeignKey(Room)
 	created = models.DateTimeField(auto_now_add=True)
 	sensorName = models.CharField(max_length=100, blank=False)
 

@@ -5,12 +5,12 @@ from freedom.models import Sensor
 from django.contrib.auth.models import User
 
 class RoomSerializer(serializers.HyperlinkedModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
+    #owner = serializers.ReadOnlyField(source='owner.username')
     sensors = serializers.HyperlinkedRelatedField(many=True, view_name='sensor-list', read_only=True)
 
     class Meta:
         model = Room
-        fields = ('url', 'owner', 'roomName', 'sensors')
+        fields = ('url', 'roomName', 'sensors')
 
 class SensorSerializer(serializers.HyperlinkedModelSerializer):
     "room = serializers.HyperlinkedRelatedField(many=True, view_name='room-detail', read_only=True)"
