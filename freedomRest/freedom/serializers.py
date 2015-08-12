@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class RoomSerializer(serializers.HyperlinkedModelSerializer):
     #owner = serializers.ReadOnlyField(source='owner.username')
-    sensors = serializers.HyperlinkedRelatedField(many=True, view_name='sensor-list', read_only=True)
+    #sensors = serializers.HyperlinkedRelatedField(many=True, view_name='sensor-list', read_only=True)
 
     class Meta:
         model = Room
@@ -15,7 +15,7 @@ class RoomSerializer(serializers.HyperlinkedModelSerializer):
 class SensorSerializer(serializers.HyperlinkedModelSerializer):
     "room = serializers.HyperlinkedRelatedField(many=True, view_name='room-detail', read_only=True)"
     "room = serializers.ReadOnlyField(source='room.name')"
-    room = RoomSerializer(required=True)
+    room = RoomSerializer(many=True, read_only=True)
 
     class Meta:
         model = Sensor
