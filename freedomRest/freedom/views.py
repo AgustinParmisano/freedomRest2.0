@@ -32,8 +32,8 @@ class RoomViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly,)
 
-    """def perform_create(self, serializer):
-            serializer.save(owner=self.request.user)"""
+    def perform_create(self, serializer):
+            serializer.save(owner=self.request.user)
 
 class SensorViewSet(viewsets.ModelViewSet):
     """
@@ -45,8 +45,8 @@ class SensorViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly,)
 
-    """def perform_create(self, serializer):
-            serializer.save(owner=self.request.user)"""
+    def perform_create(self, serializer):
+            serializer.save(owner=self.request.user)
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
